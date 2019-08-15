@@ -1,21 +1,34 @@
 import React, { Component } from "react";
 import LineChart from "react-linechart";
-// import "../node_modules/react-linechart/dist/styles.css";
-// import "./App.css";
+import dataPredict from "./dataPredict.json";
 
 class Predict extends Component {
   render() {
+    //data gồm id, name , color, points
     const data = [
       {
         color: "steelblue",
-        points: [{ x: 1, y: 2 }, { x: 3, y: 5 }, { x: 7, y: -3 }]
+        points: dataPredict
       }
     ];
+
     return (
       <div>
-        <div className='App'>
-          <h1>My First LineChart</h1>
-          <LineChart width={600} height={400} data={data} />
+        <div className='Predict'>
+          <h1>My Predict LineChart</h1>
+          <LineChart
+            width={600}
+            height={400}
+            data={data}
+            xLabel='Date'
+            yLabel='Price'
+            xMin='2016-05-01'
+            xMax='2016-12-01'
+            yMin='0'
+            yMax='100'
+            interpolate='Linear'
+            isDate={true}
+          />
         </div>
       </div>
     );

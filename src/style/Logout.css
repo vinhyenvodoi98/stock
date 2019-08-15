@@ -1,0 +1,15 @@
+.Logout{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 100vh;
+}
+
+.box{
+    width: 30%;
+    border: 2px solid black;
+    padding: 2%;
+    border-radius: 8px;
+    margin: auto
+}

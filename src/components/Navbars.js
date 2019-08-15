@@ -19,8 +19,10 @@ class Navbars extends Component {
               <Nav.Link href='/logout'>Logout</Nav.Link>
               <Nav.Link href='s/create'>Create</Nav.Link>
               <NavDropdown title='Dropdown' id='basic-nav-dropdown'>
-                {company.map((company) => (
-                  <NavDropdown.Item href='/dssfss/3.1'>{company.name}</NavDropdown.Item>
+                {company.map((company, index) => (
+                  <NavDropdown.Item key={index} href={"/" + company.name}>
+                    {company.name}
+                  </NavDropdown.Item>
                 ))}
               </NavDropdown>
             </Nav>
