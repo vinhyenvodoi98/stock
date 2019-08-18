@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Button, Form, Col } from "react-bootstrap";
 
-import "../style/Logout.css";
+import "../style/Login.css";
 
-class Logout extends Component {
+class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,16 +21,16 @@ class Logout extends Component {
 
   render() {
     return (
-      <div className='Logout'>
+      <div className='Login'>
         <Button onClick={this.setStateLogin}>
           {this.state.isLogin ? <span>SignIn</span> : <span>SignUp</span>}
         </Button>
         {this.state.isLogin ? (
           <div className='box'>
             <Form>
-              <Form.Group controlId='formGroupEmail'>
-                <Form.Label>Email address</Form.Label>
-                <Form.Control type='email' placeholder='Enter email' />
+              <Form.Group controlId='formGroupUsername'>
+                <Form.Label>Username</Form.Label>
+                <Form.Control type='text' placeholder='Username' />
               </Form.Group>
               <Form.Group controlId='formGroupPassword'>
                 <Form.Label>Password</Form.Label>
@@ -46,44 +46,14 @@ class Logout extends Component {
           <div className='box'>
             <Form>
               <Form.Row>
-                <Form.Group as={Col} controlId='formGridEmail'>
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control type='email' placeholder='Enter email' />
+                <Form.Group as={Col} controlId='formGridUsername'>
+                  <Form.Label>Username</Form.Label>
+                  <Form.Control type='text' placeholder='Username' />
                 </Form.Group>
 
                 <Form.Group as={Col} controlId='formGridPassword'>
                   <Form.Label>Password</Form.Label>
                   <Form.Control type='password' placeholder='Password' />
-                </Form.Group>
-              </Form.Row>
-
-              <Form.Group controlId='formGridAddress1'>
-                <Form.Label>Address</Form.Label>
-                <Form.Control placeholder='1234 Main St' />
-              </Form.Group>
-
-              <Form.Group controlId='formGridAddress2'>
-                <Form.Label>Address 2</Form.Label>
-                <Form.Control placeholder='Apartment, studio, or floor' />
-              </Form.Group>
-
-              <Form.Row>
-                <Form.Group as={Col} controlId='formGridCity'>
-                  <Form.Label>City</Form.Label>
-                  <Form.Control />
-                </Form.Group>
-
-                <Form.Group as={Col} controlId='formGridState'>
-                  <Form.Label>State</Form.Label>
-                  <Form.Control as='select'>
-                    <option>Choose...</option>
-                    <option>...</option>
-                  </Form.Control>
-                </Form.Group>
-
-                <Form.Group as={Col} controlId='formGridZip'>
-                  <Form.Label>Zip</Form.Label>
-                  <Form.Control />
                 </Form.Group>
               </Form.Row>
 
@@ -102,4 +72,4 @@ class Logout extends Component {
   }
 }
 
-export default Logout;
+export default Login;
