@@ -1,13 +1,15 @@
-import React, { Component } from "react";
-import LineChart from "react-linechart";
-import dataPredict from "./dataPredict.json";
+import React, { Component } from 'react';
+import LineChart from 'react-linechart';
+import dataPredict from './dataPredict.json';
+import company from './company.json';
+import { DropdownButton, Dropdown } from 'react-bootstrap';
 
 class Predict extends Component {
   render() {
     //data gồm id, name , color, points
     const data = [
       {
-        color: "steelblue",
+        color: 'steelblue',
         points: dataPredict
       }
     ];
@@ -15,6 +17,13 @@ class Predict extends Component {
     return (
       <div>
         <div className='Predict'>
+          <DropdownButton id='dropdown-basic-button' title='Company'>
+            {company.map((company, index) => (
+              <Dropdown.Item key={index} href={'/' + company.name}>
+                {company.name}
+              </Dropdown.Item>
+            ))}
+          </DropdownButton>
           <h1>My Predict LineChart</h1>
           <LineChart
             width={600}

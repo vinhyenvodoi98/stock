@@ -13,3 +13,9 @@
     border-radius: 8px;
     margin: auto
 }
+
+.title{
+    margin-bottom: 10%;
+    font-size: 2em;
+    font-weight: 600
+}
