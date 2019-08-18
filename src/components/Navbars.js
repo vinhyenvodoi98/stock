@@ -16,9 +16,9 @@ class Navbars extends Component {
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='mr-auto'>
               <Nav.Link href='/predict'>Predict</Nav.Link>
-              <Nav.Link href='/logout'>Logout</Nav.Link>
-              <Nav.Link href='s/create'>Create</Nav.Link>
-              <NavDropdown title='Dropdown' id='basic-nav-dropdown'>
+              <Nav.Link href='/login'>Login</Nav.Link>
+              <Nav.Link href='/create'>Create</Nav.Link>
+              <NavDropdown title='Company' id='basic-nav-dropdown'>
                 {company.map((company, index) => (
                   <NavDropdown.Item key={index} href={"/" + company.name}>
                     {company.name}
