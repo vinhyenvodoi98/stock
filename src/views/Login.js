@@ -8,12 +8,14 @@ class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLogin: false,
+      isLogin: true,
       username: '',
       password: ''
     };
 
     this.setStateLogin = this.setStateLogin.bind(this);
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.submitSignIn = this.submitSignIn.bind(this);
     this.submitSignUp = this.submitSignUp.bind(this);
   }
@@ -64,7 +66,7 @@ class Login extends Component {
     return (
       <div className='Login'>
         <Button onClick={this.setStateLogin}>
-          {this.state.isLogin ? <span>SignIn</span> : <span>SignUp</span>}
+          {this.state.isLogin ? <span>SignUp</span> : <span>SignIn</span>}
         </Button>
         {this.state.isLogin ? (
           <div className='box'>
