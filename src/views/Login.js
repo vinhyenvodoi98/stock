@@ -18,6 +18,8 @@ class Login extends Component {
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.submitSignIn = this.submitSignIn.bind(this);
     this.submitSignUp = this.submitSignUp.bind(this);
+    this.handleUsernameChange = this.handleUsernameChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
 
   setStateLogin = () => {
@@ -50,7 +52,7 @@ class Login extends Component {
 
   submitSignUp = () => {
     axios
-      .post('http://127.0.0.1:5000/register', {
+      .post('http://172.17.0.2:5000/register', {
         username: this.state.username,
         password: this.state.password
       })
@@ -63,6 +65,7 @@ class Login extends Component {
   };
 
   render() {
+    console.log(this.state.username);
     return (
       <div className='Login'>
         <Button onClick={this.setStateLogin}>
@@ -88,11 +91,11 @@ class Login extends Component {
                   onChange={this.handlePasswordChange}
                 />
               </Form.Group>
-
-              <Button variant='primary' type='submit' onClick={this.submitSignIn}>
-                Submit
-              </Button>
             </Form>
+
+            <Button variant='primary' type='submit' onClick={this.submitSignIn}>
+              Submit
+            </Button>
           </div>
         ) : (
           <div className='box'>
@@ -115,11 +118,10 @@ class Login extends Component {
                   onChange={this.handlePasswordChange}
                 />
               </Form.Group>
-
-              <Button variant='primary' type='submit' onClick={this.submitSignUp}>
-                Submit
-              </Button>
             </Form>
+            <Button variant='primary' type='submit' onClick={this.submitSignUp}>
+              Submit
+            </Button>
           </div>
         )}
       </div>
