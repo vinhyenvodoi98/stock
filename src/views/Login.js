@@ -18,8 +18,6 @@ class Login extends Component {
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.submitSignIn = this.submitSignIn.bind(this);
     this.submitSignUp = this.submitSignUp.bind(this);
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
 
   setStateLogin = () => {
@@ -52,7 +50,7 @@ class Login extends Component {
 
   submitSignUp = () => {
     axios
-      .post('http://172.17.0.2:5000/register', {
+      .post('http://localhost:5000/register', {
         username: this.state.username,
         password: this.state.password
       })
@@ -69,11 +67,11 @@ class Login extends Component {
     return (
       <div className='Login'>
         <Button onClick={this.setStateLogin}>
-          {this.state.isLogin ? <span>SignUp</span> : <span>SignIn</span>}
+          {this.state.isLogin ? <span>Sign Up</span> : <span>Sign In</span>}
         </Button>
         {this.state.isLogin ? (
           <div className='box'>
-            <p className='title'>SignIn</p>
+            <p className='title'>Sign In</p>
             <Form>
               <Form.Group as={Col} controlId='formGroupUsername'>
                 <Form.Label>Username</Form.Label>
@@ -99,7 +97,7 @@ class Login extends Component {
           </div>
         ) : (
           <div className='box'>
-            <p className='title'>SignUp</p>
+            <p className='title'>Sign Up</p>
             <Form>
               <Form.Group as={Col} controlId='formGridUsername'>
                 <Form.Label>Username</Form.Label>
