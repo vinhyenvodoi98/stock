@@ -7,6 +7,8 @@ import Create from "./views/Create";
 
 import "./App.css";
 
+require('dotenv').config();
+
 function App() {
   return (
     <BrowserRouter>
