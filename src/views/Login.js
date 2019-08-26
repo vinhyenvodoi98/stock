@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
 import { Button, Form, Col } from 'react-bootstrap';
 import axios from 'axios';
+import { compose } from 'redux';
+import { connect } from 'react-redux';
+// NOTE
+// add store and dispatch
+import store from '../store';
+import * as accountAction from '../actions/accountAction';
 
 import '../style/Login.css';
 
@@ -10,7 +16,7 @@ class Login extends Component {
     this.state = {
       isLogin: true,
       username: '',
-      password: '',
+      password: ''
     };
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
@@ -34,7 +40,7 @@ class Login extends Component {
   submitSignIn = () => {
     var host = window.location.hostname;
     if (host !== 'localhost') {
-      host = 'cloud'
+      host = 'cloud';
     }
     var url = 'http://' + host + ':5000/auth';
 
@@ -43,11 +49,17 @@ class Login extends Component {
         username: this.state.username,
         password: this.state.password
       })
-      .then(function (response) {
+      .then(function(response) {
         localStorage.setItem('access_token', response.data.access_token);
+        // NOTE
+        // if response 200
+        // gia su isLogin == true no se tra lại la true trong props
+        var isLogin = true;
+        store.dispatch(accountAction.login(isLogin));
+
         console.log(response);
       })
-      .catch(function (error) {
+      .catch(function(error) {
         console.log(error);
       });
   };
@@ -55,7 +67,7 @@ class Login extends Component {
   submitSignUp = () => {
     var host = window.location.hostname;
     if (host !== 'localhost') {
-      host = 'cloud'
+      host = 'cloud';
     }
     var url = 'http://' + host + ':5000/register';
 
@@ -74,11 +86,10 @@ class Login extends Component {
 
   render() {
     console.log(this.state.username);
+    console.log(' is this account login ?', this.props.account.isLogin);
     return (
       <div className='Login'>
-        <Button
-          variant="outline-primary"
-          onClick={this.setStateLogin}>
+        <Button variant='outline-primary' onClick={this.setStateLogin}>
           {this.state.isLogin ? <span>Sign Up</span> : <span>Sign In</span>}
         </Button>
         {this.state.isLogin ? (
@@ -143,4 +154,12 @@ class Login extends Component {
   }
 }
 
-export default Login;
+// NOTE
+const mapStatetoProps = (state) => {
+  // gan login o redux vào props ở trên chỉ cần gọi this.props.login để check
+  return {
+    account: state.account
+  };
+};
+
+export default compose(connect(mapStatetoProps))(Login);
