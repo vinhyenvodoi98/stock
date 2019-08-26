@@ -13,11 +13,8 @@ class Login extends Component {
       password: '',
     };
 
-    this.setStateLogin = this.setStateLogin.bind(this);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.submitSignIn = this.submitSignIn.bind(this);
-    this.submitSignUp = this.submitSignUp.bind(this);
   }
 
   setStateLogin = () => {
@@ -47,6 +44,7 @@ class Login extends Component {
         password: this.state.password
       })
       .then(function (response) {
+        localStorage.setItem('access_token', response.data.access_token);
         console.log(response);
       })
       .catch(function (error) {
@@ -78,7 +76,9 @@ class Login extends Component {
     console.log(this.state.username);
     return (
       <div className='Login'>
-        <Button onClick={this.setStateLogin}>
+        <Button
+          variant="outline-primary"
+          onClick={this.setStateLogin}>
           {this.state.isLogin ? <span>Sign Up</span> : <span>Sign In</span>}
         </Button>
         {this.state.isLogin ? (

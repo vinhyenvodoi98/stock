@@ -1,5 +1,38 @@
 [
   {
-    "name": "Brains Technology"
+    "value": "aa",
+    "label": "Alcoa Corporation"
+  },
+  {
+    "value": "aaba",
+    "label": "Altaba Inc."
+  },
+  {
+    "value": "aamc",
+    "label": "Altisource Asset Management Corporation"
+  },
+  {
+    "value": "cadc",
+    "label": "Huitao Technology Co., Ltd."
+  },
+  {
+    "value": "cndt",
+    "label": "Conduent Incorporated"
+  },
+  {
+    "value": "cnet",
+    "label": "ChinaNet Online Holdings, Inc."
+  },
+  {
+    "value": "ihc",
+    "label": "Independence Holding Company"
+  },
+  {
+    "value": "icon",
+    "label": "Iconix Brand Group, Inc."
+  },
+  {
+    "value": "igvt",
+    "label": "Xtrackers Barclays International Treasury Bond Hedged ETF"
   }
 ]
