@@ -12,7 +12,6 @@ function App() {
     <BrowserRouter>
       <div className='App'>
         <Switch>
-          {/* exact la chi / moi vao page nay */}
           <Route exact path='/' component={Home} />
           <Route path='/create' component={Create} />
           <Route path='/predict' component={Predict} />

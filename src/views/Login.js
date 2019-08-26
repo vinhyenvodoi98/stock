@@ -10,12 +10,9 @@ class Login extends Component {
     this.state = {
       isLogin: true,
       username: '',
-      password: ''
+      password: '',
     };
 
-    this.setStateLogin = this.setStateLogin.bind(this);
-    this.submitSignIn = this.submitSignIn.bind(this);
-    this.submitSignUp = this.submitSignUp.bind(this);
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
   }
@@ -35,22 +32,35 @@ class Login extends Component {
   }
 
   submitSignIn = () => {
-    // axios
-    //   .post('http://127.0.0.1:5000/register', {
-    //     username: this.state.username,
-    //     password: this.state.password
-    //   })
-    //   .then(function (response) {
-    //     console.log(response);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
+    var host = window.location.hostname;
+    if (host !== 'localhost') {
+      host = 'cloud'
+    }
+    var url = 'http://' + host + ':5000/auth';
+
+    axios
+      .post(url, {
+        username: this.state.username,
+        password: this.state.password
+      })
+      .then(function (response) {
+        localStorage.setItem('access_token', response.data.access_token);
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   submitSignUp = () => {
+    var host = window.location.hostname;
+    if (host !== 'localhost') {
+      host = 'cloud'
+    }
+    var url = 'http://' + host + ':5000/register';
+
     axios
-      .post('http://172.17.0.2:5000/register', {
+      .post(url, {
         username: this.state.username,
         password: this.state.password
       })
@@ -66,16 +76,19 @@ class Login extends Component {
     console.log(this.state.username);
     return (
       <div className='Login'>
-        <Button onClick={this.setStateLogin}>
-          {this.state.isLogin ? <span>SignUp</span> : <span>SignIn</span>}
+        <Button
+          variant="outline-primary"
+          onClick={this.setStateLogin}>
+          {this.state.isLogin ? <span>Sign Up</span> : <span>Sign In</span>}
         </Button>
         {this.state.isLogin ? (
           <div className='box'>
-            <p className='title'>SignIn</p>
+            <p className='title'>Sign In</p>
             <Form>
               <Form.Group as={Col} controlId='formGroupUsername'>
                 <Form.Label>Username</Form.Label>
                 <Form.Control
+                  required
                   type='text'
                   placeholder='Username'
                   onChange={this.handleUsernameChange}
@@ -84,6 +97,7 @@ class Login extends Component {
               <Form.Group as={Col} controlId='formGroupPassword'>
                 <Form.Label>Password</Form.Label>
                 <Form.Control
+                  required
                   type='password'
                   placeholder='Password'
                   onChange={this.handlePasswordChange}
@@ -97,11 +111,12 @@ class Login extends Component {
           </div>
         ) : (
           <div className='box'>
-            <p className='title'>SignUp</p>
+            <p className='title'>Sign Up</p>
             <Form>
               <Form.Group as={Col} controlId='formGridUsername'>
                 <Form.Label>Username</Form.Label>
                 <Form.Control
+                  required
                   type='text'
                   placeholder='Username'
                   onChange={this.handleUsernameChange}
@@ -111,6 +126,7 @@ class Login extends Component {
               <Form.Group as={Col} controlId='formGridPassword'>
                 <Form.Label>Password</Form.Label>
                 <Form.Control
+                  required
                   type='password'
                   placeholder='Password'
                   onChange={this.handlePasswordChange}
