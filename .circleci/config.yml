@@ -1,0 +1,26 @@
+version: 2.1
+
+jobs:
+  docker-build-and-push:
+    docker:
+      - image: docker:19.03.8
+    resource_class: small
+    steps:
+      - checkout
+      - setup_remote_docker:
+          version: 19.03.8
+      - run:
+          name: build image
+          command: |
+            docker build -t --build-arg tag_version=v0.0.0 --build-arg  -f Dockerfile .
+workflows:
+  build_and_push_image:
+    jobs:
+      - docker-build-and-push:
+          filters:
+            branches:
+              only:
+                - main
+                - develop
+                - release
+                - Feat/*
